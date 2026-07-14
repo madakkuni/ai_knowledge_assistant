@@ -8,6 +8,9 @@ class Settings(BaseSettings):
     environment: str
     api_prefix: str
 
+    log_directory: str = "logs"
+    log_level: str = "INFO"
+
     model_config = SettingsConfigDict(
         env_file=".env",
         case_sensitive=False,

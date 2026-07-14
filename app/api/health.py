@@ -1,15 +1,17 @@
+import logging
+
 from fastapi import APIRouter
 
-from app.core.config import settings
+logger = logging.getLogger("ai_knowledge_assistant")
 
 router = APIRouter()
 
 
 @router.get("/health")
 def health():
+
+    logger.info("Health endpoint invoked.")
+
     return {
-        "status": "healthy",
-        "service": settings.app_name,
-        "version": settings.app_version,
-        "environment": settings.environment,
+        "status": "healthy"
     }
