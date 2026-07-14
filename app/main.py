@@ -1,4 +1,7 @@
 from fastapi import FastAPI
+
+from app.api.health import router as health_router
+from app.api.root import router as root_router
 from app.core.config import settings
 
 app = FastAPI(
@@ -7,8 +10,5 @@ app = FastAPI(
     version=settings.app_version,
 )
 
-@app.get("/")
-def root():
-    return {
-        "message": "AI Knowledge Assistant is running..."
-    }
+app.include_router(root_router)
+app.include_router(health_router)
