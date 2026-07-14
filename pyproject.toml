@@ -1,10 +1,9 @@
 [project]
-name = "ai-knowledge-assistant"
+name = "ai_knowledge_assistant"
 version = "0.1.0"
 description = "Production-ready Retrieval Augmented Generation (RAG) application for enterprise knowledge search."
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
-
 dependencies = [
     "fastapi>=0.139.0",
     "uvicorn>=0.51.0",

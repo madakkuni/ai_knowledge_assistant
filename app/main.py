@@ -8,5 +8,5 @@ app = FastAPI(
 @app.get("/")
 def root():
     return {
-        "message": "AI Knowledge Assistant is running!"
+        "message": "AI Knowledge Assistant is running..."
     }
