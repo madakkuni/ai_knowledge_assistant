@@ -1,6 +1,6 @@
 import logging
-
 from fastapi import APIRouter
+
 
 logger = logging.getLogger("ai_knowledge_assistant")
 

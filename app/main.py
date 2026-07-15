@@ -5,6 +5,7 @@ from app.api.root import router as root_router
 from app.core.config import settings
 from app.core.logging import setup_logging
 from app.exceptions.handlers import register_exception_handlers
+from app.api.documents import router as document_router
 
 logger = setup_logging()
 
@@ -21,5 +22,7 @@ app = FastAPI(
 )
 register_exception_handlers(app)
 
+
 app.include_router(root_router)
 app.include_router(health_router)
+app.include_router(document_router)
