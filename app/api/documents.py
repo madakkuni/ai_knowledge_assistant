@@ -1,8 +1,7 @@
 import logging
-
 from fastapi import APIRouter
-
 from app.services.ingestion_service import IngestionService
+from app.models.load_document_request import LoadDocumentRequest
 
 logger = logging.getLogger("ai_knowledge_assistant")
 
@@ -15,11 +14,11 @@ ingestion_service = IngestionService()
 
 
 @router.post("/load")
-def load_document(file_path: str):
+def load_document(request: LoadDocumentRequest):
 
     logger.info("Received document load request")
 
-    documents = ingestion_service.load_document(file_path)
+    documents = ingestion_service.load_document(request.file_path)
 
     logger.info("Returning response")
 
