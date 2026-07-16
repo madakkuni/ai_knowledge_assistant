@@ -4,7 +4,7 @@ from app.services.ingestion_service import IngestionService
 from app.models.load_document_request import LoadDocumentRequest
 from app.models.load_document_response import LoadDocumentResponse
 
-logger = logging.getLogger("ai_knowledge_assistant")
+logger = logging.getLogger(__name__)
 
 router = APIRouter(
     prefix="/documents",

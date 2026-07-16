@@ -26,7 +26,12 @@ def setup_logging() -> logging.Logger:
     log_file = log_directory / log_filename
 
     formatter = logging.Formatter(
-        fmt="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
+        fmt=(
+            "%(asctime)s | "
+            "%(levelname)-8s | "
+            "%(module)s.%(funcName)s:%(lineno)d | "
+            "%(message)s"
+        ),
         datefmt="%d-%m-%Y %H:%M:%S",
     )
 
@@ -40,14 +45,14 @@ def setup_logging() -> logging.Logger:
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(formatter)
 
-    logger = logging.getLogger(APP_LOGGER_NAME)
+    root_logger = logging.getLogger()
 
-    logger.setLevel(settings.log_level)
+    root_logger.setLevel(settings.log_level)
 
-    if not logger.handlers:
-        logger.addHandler(file_handler)
-        logger.addHandler(console_handler)
+    if root_logger.hasHandlers():
+        root_logger.handlers.clear()
 
-    logger.propagate = False
+    root_logger.addHandler(file_handler)
+    root_logger.addHandler(console_handler)
 
-    return logger
+    return logging.getLogger(APP_LOGGER_NAME)

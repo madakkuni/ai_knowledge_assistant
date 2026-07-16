@@ -3,7 +3,7 @@ import logging
 from app.ingestion.loaders.loader_factory import LoaderFactory
 from app.models.document import Document
 
-logger = logging.getLogger("ai_knowledge_assistant")
+logger = logging.getLogger(__name__)
 
 
 class IngestionService:

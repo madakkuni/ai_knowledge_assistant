@@ -5,7 +5,7 @@ from fastapi import APIRouter
 from app.models.health_response import HealthResponse
 from app.services.health_service import HealthService
 
-logger = logging.getLogger("ai_knowledge_assistant")
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 

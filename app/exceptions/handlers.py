@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 
 from app.exceptions.document_exceptions import DocumentLoadException
 
-logger = logging.getLogger("ai_knowledge_assistant")
+logger = logging.getLogger(__name__)
 
 
 def register_exception_handlers(app: FastAPI):
