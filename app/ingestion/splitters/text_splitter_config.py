@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class SplitterConfig:
+class TextSplitterConfig:
     chunk_size: int = 500
     chunk_overlap: int = 100
     def __post_init__(self):
