@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from app.exceptions.document_exceptions import DocumentLoadException
 from app.ingestion.loaders.base_loader import BaseLoader
 from app.ingestion.loaders.text_loader import TextLoader
 
@@ -14,4 +15,6 @@ class LoaderFactory:
         if extension == ".txt":
             return TextLoader()
 
-        raise ValueError(f"Unsupported file type: {extension}")
+        raise DocumentLoadException(
+            f"Unsupported document type: {extension}"
+        )
