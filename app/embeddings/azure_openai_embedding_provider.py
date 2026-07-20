@@ -1,21 +1,24 @@
 import logging
 
 from app.core.azure_openai_client_factory import AzureOpenAIClientFactory
+from app.core.config import settings
 from app.embeddings.base_embedding_provider import BaseEmbeddingProvider
 from app.embeddings.embedding_config import EmbeddingConfig
 from app.exceptions.embedding_exceptions import EmbeddingException
 from app.models.chunk import Chunk
 from app.models.embedding import Embedding
-from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
 
 class AzureOpenAIEmbeddingProvider(BaseEmbeddingProvider):
+    """
+    Azure OpenAI implementation of the embedding provider.
+    """
 
     def __init__(
         self,
-        config: EmbeddingConfig
+        config: EmbeddingConfig,
     ):
 
         self.config = config
@@ -28,7 +31,7 @@ class AzureOpenAIEmbeddingProvider(BaseEmbeddingProvider):
 
     def generate_embedding(
         self,
-        chunk: Chunk
+        chunk: Chunk,
     ) -> Embedding:
 
         try:
@@ -43,10 +46,18 @@ class AzureOpenAIEmbeddingProvider(BaseEmbeddingProvider):
                 input=chunk.content,
             )
 
-            return Embedding(
+            embedding = Embedding(
                 vector=response.data[0].embedding,
-                metadata=chunk.metadata
+                content=chunk.content,
+                metadata=chunk.metadata,
             )
+
+            logger.info(
+                "Successfully generated embedding for chunk %s",
+                chunk.metadata.get("chunk_id", "N/A")
+            )
+
+            return embedding
 
         except Exception as ex:
 
@@ -60,8 +71,16 @@ class AzureOpenAIEmbeddingProvider(BaseEmbeddingProvider):
 
     def generate_embeddings(
         self,
-        chunks: list[Chunk]
+        chunks: list[Chunk],
     ) -> list[Embedding]:
+
+        if not chunks:
+
+            logger.warning(
+                "No chunks provided for embedding generation."
+            )
+
+            return []
 
         try:
 
@@ -80,17 +99,21 @@ class AzureOpenAIEmbeddingProvider(BaseEmbeddingProvider):
                 input=texts,
             )
 
+            if len(response.data) != len(chunks):
+
+                raise EmbeddingException(
+                    "Mismatch between input chunks and generated embeddings."
+                )
+
             embeddings = []
 
-            for chunk, item in zip(
-                chunks,
-                response.data
-            ):
+            for chunk, item in zip(chunks, response.data):
 
                 embeddings.append(
                     Embedding(
                         vector=item.embedding,
-                        metadata=chunk.metadata
+                        content=chunk.content,
+                        metadata=chunk.metadata,
                     )
                 )
 
