@@ -1,226 +1,33 @@
 COFOG Enterprise Payroll FAQ (Sample Dataset)
-
-Disclaimer: This is a fictional enterprise payroll handbook created for
-training, RAG, and AI demonstration purposes.
-
-==================================================================== 1.
-What is the Enterprise Payroll Team responsible for?
-====================================================================
-
-The Enterprise Payroll Team is responsible for processing employee
-salaries accurately and on time. The team manages payroll calculations,
-statutory deductions, tax deductions, leave deductions, reimbursements,
-incentives, overtime payments, bonus processing, final settlements, and
-compliance with local labor regulations.
-
-Payroll processing follows a predefined monthly calendar. Multiple
-validation checkpoints ensure employee master data, attendance, leave
-balances, and salary revisions are verified before salary disbursement.
-
-==================================================================== 2.
-When is salary credited?
-====================================================================
-
-Employees are generally paid on the last working day of every month. If
-the last working day falls on a weekend or public holiday, salary is
-credited on the previous working day.
-
-The payroll calendar is communicated at the beginning of every financial
-year.
-
-==================================================================== 3.
-What components are included in salary?
-====================================================================
-
-A typical salary structure consists of:
-
--   Basic Pay
--   House Rent Allowance (HRA)
--   Special Allowance
--   Conveyance Allowance
--   Medical Allowance
--   Performance Incentive
--   Shift Allowance
--   Bonus
--   Overtime
--   Employer PF Contribution
--   Employer Insurance Contribution
-
-Certain components vary depending on employee grade, location, and
-employment type.
-
-==================================================================== 4.
-What deductions appear in my payslip?
-====================================================================
-
-Common deductions include:
-
--   Provident Fund (PF)
--   Professional Tax (PT)
--   Employee State Insurance (ESI) where applicable
--   Income Tax (TDS)
--   Leave Without Pay (LWP)
--   Recovery of salary advances
--   Cafeteria deductions
--   Insurance premiums
--   Other statutory deductions
-
-Every deduction includes a description in the monthly payslip.
-
-==================================================================== 5.
-What should I do if my salary is incorrect?
-====================================================================
-
-Employees should raise a Payroll Support Ticket through the HR Service
-Portal within seven working days of salary credit.
-
-The ticket should include:
-
-• Employee ID • Pay Month • Description of the issue • Supporting
-documents • Screenshot of payslip (if applicable)
-
-The payroll team investigates the issue, validates payroll records, and
-communicates the resolution.
-
-==================================================================== 6.
-Why was Leave Without Pay deducted?
-====================================================================
-
-Leave Without Pay (LWP) is applied when approved leave balance is
-insufficient or attendance records indicate unpaid absence.
-
-The payroll engine automatically calculates salary deductions based on
-the number of unpaid leave days.
-
-==================================================================== 7.
-How is overtime calculated?
-====================================================================
-
-Eligible employees receive overtime payment based on approved overtime
-hours submitted by their reporting manager.
-
-Only approved overtime before payroll cutoff is included in the current
-month’s salary.
-
-Late approvals are processed in the next payroll cycle.
-
-==================================================================== 8.
-What is the payroll cutoff date?
-====================================================================
-
-Payroll cutoff is generally the 20th of every month.
-
-Changes submitted after the cutoff may be processed in the following
-payroll cycle.
-
-Examples include:
-
--   Promotion
--   Salary revision
--   Bank account update
--   Tax declaration
--   Attendance corrections
-
-==================================================================== 9.
-How are bonuses processed?
-====================================================================
-
-Performance bonuses are processed separately after approval by business
-leadership.
-
-Bonus calculations consider:
-
--   Performance Rating
--   Business Unit Performance
--   Organization Performance
--   Employment Status
--   Eligibility Period
-
-Applicable taxes are deducted before payment.
-
-==================================================================== 10.
-What happens during Full and Final Settlement?
-====================================================================
-
-When an employee leaves the organization, the Payroll Team processes
-Full and Final Settlement after receiving clearance from HR, Finance,
-IT, and Administration.
-
-The settlement may include:
-
--   Pending salary
--   Leave encashment
--   Bonus eligibility
--   Recoveries
--   Gratuity (if applicable)
--   Tax adjustments
-
-Processing normally completes within statutory timelines.
-
-==================================================================== 11.
-Why is TDS deducted?
-====================================================================
-
-Tax Deducted at Source (TDS) is calculated based on projected annual
-taxable income, submitted investment declarations, exemptions, and
-prevailing tax regulations.
-
-Employees should review tax declarations before the payroll cutoff.
-
-==================================================================== 12.
-How do I download my payslip?
-====================================================================
-
-Employees can log in to the Employee Self-Service Portal and navigate
-to:
-
-Payroll → Payslips → Financial Year → Select Month → Download PDF
-
-Payslips remain available for historical reference.
-
-==================================================================== 13.
-Can I change my bank account?
-====================================================================
-
-Yes.
-
-Employees must submit a Bank Account Change Request before payroll
-cutoff.
-
-Supporting documents:
-
--   Cancelled Cheque
--   Bank Passbook
--   Official Bank Statement
-
-Payroll validates the request before updating employee records.
-
-==================================================================== 14.
-Who should I contact for payroll support?
-====================================================================
-
-Employees should raise requests through the HR Service Portal rather
-than sending emails directly.
-
-Typical ticket categories include:
-
--   Missing Salary
--   Incorrect Salary
--   Tax Query
--   Bonus Query
--   Bank Account Change
--   Payslip Request
--   PF Query
--   Final Settlement Query
-
-==================================================================== 15.
-How is payroll data secured?
-====================================================================
-
-Payroll data is encrypted both in transit and at rest. Access is
-controlled through role-based permissions. All payroll activities are
-logged for auditing. Sensitive employee information is accessible only
-to authorized payroll personnel. Backup and disaster recovery procedures
-ensure payroll continuity.
-
+Disclaimer: This is a fictional enterprise payroll handbook created for training, RAG, and AI demonstration purposes.
+Q1. What is the Enterprise Payroll Team responsible for?
+The Enterprise Payroll Team manages the complete payroll lifecycle, including salary processing, payroll calculations, statutory deductions, tax deductions, leave deductions, reimbursements, overtime, incentives, bonuses, final settlements, and compliance with labor regulations. Payroll follows a defined monthly schedule with validation of employee master data, attendance, leave records, salary revisions, and approvals to ensure salaries are processed accurately, securely, and on time for all eligible employees.
+Q2. When is salary credited?
+Employee salaries are generally credited on the last working day of each month. If the scheduled payment date falls on a weekend or public holiday, salary is processed on the previous working day. The payroll calendar is published at the beginning of every financial year, and employees should complete payroll-related requests before the published cutoff dates to avoid delays in salary processing.
+Q3. What components are included in salary?
+A typical salary package includes Basic Pay, House Rent Allowance, Special Allowance, Conveyance Allowance, Medical Allowance, Performance Incentives, Shift Allowance, Bonus, Overtime, Employer Provident Fund contribution, and Employer Insurance contribution. The exact salary structure varies based on employee grade, work location, employment type, business unit, and organizational compensation policies approved by Human Resources.
+Q4. What deductions appear in my payslip?
+Common payroll deductions include Provident Fund, Professional Tax, Employee State Insurance where applicable, Income Tax, Leave Without Pay, salary advance recovery, insurance premiums, cafeteria deductions, and other statutory deductions. Each deduction includes a clear description in the monthly payslip so employees can verify payroll calculations and raise queries if discrepancies are identified during review.
+Q5. What should I do if my salary is incorrect?
+Employees should raise a Payroll Support Ticket through the HR Service Portal within seven working days of salary credit. The request should include Employee ID, payroll month, issue description, supporting documents, and a payslip screenshot if applicable. The payroll team validates payroll records, investigates the issue, communicates findings, and processes corrections according to payroll policies and timelines.
+Q6. Why was Leave Without Pay deducted?
+Leave Without Pay is applied when approved leave balances are insufficient or attendance records indicate unpaid absence. The payroll system automatically calculates deductions based on unpaid leave days after validating attendance and leave information. Employees should review attendance records regularly and report discrepancies before the monthly payroll cutoff to avoid unnecessary salary deductions.
+Q7. How is overtime calculated?
+Eligible employees receive overtime payments based on approved overtime hours submitted by their reporting manager before the payroll cutoff. Only approved overtime included within the processing cycle is paid in the current month. Late approvals are carried forward to the following payroll cycle after successful validation and payroll processing by the payroll operations team.
+Q8. What is the payroll cutoff date?
+The payroll cutoff date is generally the twentieth day of each month. Employee changes submitted after the cutoff, including promotions, salary revisions, bank account updates, tax declarations, or attendance corrections, are normally processed in the following payroll cycle. Employees should complete required updates before the cutoff to ensure timely payroll processing.
+Q9. How are bonuses processed?
+Performance bonuses are processed separately after approval by business leadership and Human Resources. Bonus eligibility is determined using performance ratings, business performance, organizational results, employment status, and eligibility period. Applicable taxes are deducted before payment, and bonus amounts are reflected separately in payroll records and employee payslips after successful processing.
+Q10. What happens during Full and Final Settlement?
+Full and Final Settlement is processed after an employee exits the organization and receives clearance from HR, Finance, IT, and Administration. The settlement may include pending salary, leave encashment, bonus eligibility, gratuity where applicable, recoveries, and tax adjustments. Processing is completed according to statutory requirements and organizational exit procedures.
+Q11. Why is TDS deducted?
+Tax Deducted at Source is calculated using projected annual taxable income, investment declarations, exemptions, applicable tax regulations, and payroll records. Employees should review and submit tax declarations before the payroll cutoff to minimize adjustments. Updated tax information helps ensure accurate tax deductions throughout the financial year and reduces year-end corrections.
+Q12. How do I download my payslip?
+Employees can access the Employee Self-Service Portal and navigate to Payroll, Payslips, Financial Year, Select Month, and Download PDF. Historical payslips remain available for future reference according to company retention policies. Employees should securely store downloaded payslips because they may be required for loans, visa applications, or financial documentation.
+Q13. Can I change my bank account?
+Yes. Employees must submit a Bank Account Change Request before the payroll cutoff along with a cancelled cheque, bank passbook, or official bank statement. Payroll validates the submitted documents before updating employee records. Requests received after the cutoff may be processed in the following payroll cycle according to payroll procedures.
+Q14. Who should I contact for payroll support?
+Employees should raise requests through the HR Service Portal instead of sending emails directly to the payroll team. Common ticket categories include missing salary, incorrect salary, tax queries, bonus queries, bank account changes, payslip requests, Provident Fund queries, and final settlement requests. Tickets are tracked until resolution and closure.
+Q15. How is payroll data secured?
+Payroll data is protected using encryption during transmission and storage, role-based access controls, audit logging, and secure authentication mechanisms. Access to sensitive employee information is limited to authorized payroll personnel. Regular backups, disaster recovery procedures, compliance monitoring, and security reviews help ensure payroll availability, confidentiality, integrity, and regulatory compliance.
 End of Sample Payroll FAQ

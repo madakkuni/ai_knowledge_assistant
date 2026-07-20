@@ -90,12 +90,7 @@ class ChromaVectorStore(BaseVectorStore):
                     embedding.vector
                 )
 
-                documents.append(
-                    metadata.get(
-                        "content",
-                        ""
-                    )
-                )
+                documents.append(embedding.content)
 
                 metadatas.append(
                     metadata
