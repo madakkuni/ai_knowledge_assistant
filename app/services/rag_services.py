@@ -69,38 +69,88 @@ class RAGService:
         )
 
         return prompt
+    
     def generate_answer(
         self,
         question: str,
     ) -> str:
         """
-        Generate an answer for the user's question
-        using the complete RAG pipeline.
+        Execute the complete RAG pipeline.
 
         Args:
             question:
                 User question.
 
         Returns:
-            Generated answer from the LLM.
+            Generated answer.
         """
 
-        logger.info(
-            "Generating answer using RAG pipeline."
-        )
-
-        prompt = self.build_prompt(question)
+        self._validate_question(question)
 
         logger.info(
-            "Sending prompt to Chat Completion Service."
+            "Starting RAG pipeline."
         )
 
-        response = self._chat_service.generate_response(
-            prompt
-        )
+        start_time = time.perf_counter()
 
-        logger.info(
-            "Successfully generated answer."
-        )
+        try:
 
-        return response
+            prompt = self.build_prompt(question)
+
+            response = self._chat_service.generate_response(
+                prompt
+            )
+
+            elapsed = time.perf_counter() - start_time
+
+            logger.info(
+                "RAG pipeline completed successfully in %.2f seconds.",
+                elapsed,
+            )
+
+            return response
+
+        except RAGException:
+            raise
+
+        except Exception as ex:
+
+            logger.exception(
+                "Unexpected error while executing RAG pipeline."
+            )
+
+            raise RAGException(
+                "Failed to generate response."
+            ) from ex
+    
+
+    @staticmethod
+    def _validate_question(
+        question: str,
+    ) -> None:
+        """
+        Validate the user question.
+
+        Args:
+            question:
+                User question.
+
+        Raises:
+            RAGException:
+                If the question is invalid.
+        """
+
+        if question is None:
+            raise RAGException(
+                "Question cannot be None."
+            )
+
+        if not question.strip():
+            raise RAGException(
+                "Question cannot be empty."
+            )
+
+        if len(question) > 5000:
+            raise RAGException(
+                "Question exceeds maximum allowed length."
+            )
