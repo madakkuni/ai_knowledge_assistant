@@ -1,75 +1,70 @@
 """
 FAQ Splitter implementation.
 
-Splits a FAQ document into one chunk
-per Question–Answer pair.
+Creates one Chunk per Question-Answer pair.
 """
 
-from __future__ import annotations
-
+import logging
 import re
-from typing import List
-
-from langchain_core.documents import Document
 
 from app.ingestion.splitters.base_splitter import BaseSplitter
+from app.models.chunk import Chunk
+from app.models.document import Document
+
+logger = logging.getLogger("ai_knowledge_assistant")
 
 
 class FAQSplitter(BaseSplitter):
-    """
-    Split FAQ documents into Question–Answer chunks.
-    """
 
     QUESTION_PATTERN = re.compile(
         r"(\d+\.\s*)?Q:\s*(.*?)\nA:\s*(.*?)(?=\n\d+\.\s*Q:|\Z)",
         re.DOTALL,
     )
 
-    def split_documents(
+    def split(
         self,
-        documents: List[Document],
-    ) -> List[Document]:
-        """
-        Split documents into FAQ chunks.
+        document: Document,
+    ) -> list[Chunk]:
 
-        Args:
-            documents:
-                Input LangChain documents.
+        logger.info(
+            "Splitting FAQ document: %s",
+            document.metadata["source"],
+        )
 
-        Returns:
-            List of FAQ chunks.
-        """
+        matches = self.QUESTION_PATTERN.findall(
+            document.content
+        )
 
-        chunks: List[Document] = []
+        chunks: list[Chunk] = []
 
-        for document in documents:
+        chunk_id = 1
 
-            matches = self.QUESTION_PATTERN.findall(
-                document.page_content
+        for _, question, answer in matches:
+
+            chunk_text = (
+                f"Question:\n"
+                f"{question.strip()}\n\n"
+                f"Answer:\n"
+                f"{answer.strip()}"
             )
 
-            if not matches:
-                chunks.append(document)
-                continue
-
-            for _, question, answer in matches:
-
-                chunk_text = (
-                    f"Question:\n"
-                    f"{question.strip()}\n\n"
-                    f"Answer:\n"
-                    f"{answer.strip()}"
+            chunks.append(
+                Chunk(
+                    content=chunk_text,
+                    metadata={
+                        **document.metadata,
+                        "chunk_id": chunk_id,
+                        "chunk_type": "faq",
+                        "question": question.strip(),
+                    },
                 )
+            )
 
-                metadata = dict(document.metadata)
+            chunk_id += 1
 
-                metadata["chunk_type"] = "faq"
-
-                chunks.append(
-                    Document(
-                        page_content=chunk_text,
-                        metadata=metadata,
-                    )
-                )
+        logger.info(
+            "Created %d FAQ chunks.",
+            len(chunks),
+        )
 
         return chunks
