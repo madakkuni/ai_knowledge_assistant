@@ -5,7 +5,7 @@ Service responsible for chat completion.
 import logging
 import time
 
-from app.exceptions.chat_completion_exceptions import ChatException
+from app.exceptions.chat_completion_exceptions import ChatCompletionException
 from app.llm.chat_factory import ChatFactory
 
 logger = logging.getLogger(__name__)
@@ -77,7 +77,7 @@ class ChatCompletionService:
                 Prompt to validate.
 
         Raises:
-            ChatException:
+            ChatCompletionException:
                 If the prompt is invalid.
         """
 
@@ -87,7 +87,7 @@ class ChatCompletionService:
                 "Prompt is None."
             )
 
-            raise ChatException(
+            raise ChatCompletionException(
                 "Prompt cannot be None."
             )
 
@@ -97,7 +97,7 @@ class ChatCompletionService:
                 "Prompt is empty."
             )
 
-            raise ChatException(
+            raise ChatCompletionException(
                 "Prompt cannot be empty."
             )
 
@@ -107,6 +107,6 @@ class ChatCompletionService:
                 "Prompt exceeds maximum allowed length."
             )
 
-            raise ChatException(
+            raise ChatCompletionException(
                 "Prompt exceeds the maximum allowed length."
             )
