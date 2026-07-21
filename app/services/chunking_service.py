@@ -1,10 +1,11 @@
-import logging
+
 
 from app.ingestion.splitters.splitter_factory import SplitterFactory
 from app.ingestion.splitters.text_splitter_config import TextSplitterConfig
 from app.models.chunk import Chunk
 from app.models.document import Document
 
+import logging
 logger = logging.getLogger(__name__)
 
 
