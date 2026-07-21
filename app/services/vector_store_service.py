@@ -7,7 +7,6 @@ from app.vectorstores.vector_store_factory import VectorStoreFactory
 logger = logging.getLogger(__name__)
 
 
-
 class VectorStoreService:
     """
     Business service responsible for vector storage operations.
@@ -49,4 +48,20 @@ class VectorStoreService:
         return self.vector_store.similarity_search(
             query_embedding=query_embedding,
             top_k=top_k,
+        )
+
+    def get_chunks(
+        self,
+        limit: int = 100,
+    ):
+        """
+        Retrieve all indexed chunks.
+        """
+
+        logger.info(
+            "Loading indexed chunks from vector store."
+        )
+
+        return self.vector_store.get_chunks(
+            limit=limit
         )

@@ -1,5 +1,8 @@
 import streamlit as st
+from pathlib import Path
+import sys
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 from components.sidebar import render_sidebar
 from utils.config import (
     APP_ICON,
@@ -7,6 +10,9 @@ from utils.config import (
     DESCRIPTION,
 )
 
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+    
 st.set_page_config(
     page_title=APP_TITLE,
     page_icon=APP_ICON,

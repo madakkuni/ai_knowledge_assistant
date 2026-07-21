@@ -13,6 +13,7 @@ from app.services.retrieval_service import RetrievalService
 from app.exceptions.rag_exceptions import RAGException
 from app.services.embedding_services import EmbeddingService
 
+
 logger = logging.getLogger(__name__)
     
 

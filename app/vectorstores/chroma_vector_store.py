@@ -147,3 +147,71 @@ class ChromaVectorStore(BaseVectorStore):
             raise VectorStoreException(
                 "Similarity search failed."
             ) from ex
+        
+    def get_chunks(
+        self,
+        limit: int = 100,
+    ):
+        """
+        Retrieve indexed chunks from ChromaDB.
+
+        Args:
+            limit:
+                Maximum number of chunks.
+
+        Returns:
+            List of indexed chunks.
+        """
+
+        logger.info(
+            "Loading up to %d chunks from ChromaDB.",
+            limit,
+        )
+
+        try:
+
+            results = self.collection.get(
+                limit=limit,
+                include=[
+                    "documents",
+                    "metadatas",
+                ],
+            )
+
+            chunks = []
+
+            for document, metadata in zip(
+                results.get("documents", []),
+                results.get("metadatas", []),
+            ):
+
+                chunks.append(
+                    {
+                        "content": document,
+                        "metadata": metadata,
+                    }
+                )
+
+            chunks.sort(
+                key=lambda chunk: chunk["metadata"].get(
+                    "chunk_id",
+                    0,
+                )
+            )
+
+            logger.info(
+                "Retrieved %d chunks.",
+                len(chunks),
+            )
+
+            return chunks
+
+        except Exception as ex:
+
+            logger.exception(
+                "Failed to retrieve chunks."
+            )
+
+            raise VectorStoreException(
+                "Unable to retrieve chunks."
+            ) from ex
