@@ -5,7 +5,7 @@ Service responsible for chat completion.
 import logging
 import time
 
-from app.exceptions.chat_exceptions import ChatException
+from app.exceptions.chat_completion_exceptions import ChatException
 from app.llm.chat_factory import ChatFactory
 
 logger = logging.getLogger(__name__)
