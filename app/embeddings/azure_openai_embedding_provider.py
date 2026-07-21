@@ -29,32 +29,35 @@ class AzureOpenAIEmbeddingProvider(BaseEmbeddingProvider):
             "Azure OpenAI Embedding Provider initialized."
         )
 
-    def generate_embedding(
+    def generate_query_embedding(
         self,
-        chunk: Chunk,
+        question: str,
     ) -> Embedding:
+        """
+        Generate an embedding for a user query.
+        """
 
         try:
 
             logger.info(
-                "Generating embedding for chunk %s",
-                chunk.metadata.get("chunk_id", "N/A")
+                "Generating query embedding."
             )
 
             response = self.client.embeddings.create(
                 model=settings.azure_openai_embedding_deployment,
-                input=chunk.content,
+                input=question,
             )
 
             embedding = Embedding(
                 vector=response.data[0].embedding,
-                content=chunk.content,
-                metadata=chunk.metadata,
+                content=question,
+                metadata={
+                    "type": "query",
+                },
             )
 
             logger.info(
-                "Successfully generated embedding for chunk %s",
-                chunk.metadata.get("chunk_id", "N/A")
+                "Query embedding generated successfully."
             )
 
             return embedding
@@ -62,11 +65,11 @@ class AzureOpenAIEmbeddingProvider(BaseEmbeddingProvider):
         except Exception as ex:
 
             logger.exception(
-                "Failed to generate embedding."
+                "Failed to generate query embedding."
             )
 
             raise EmbeddingException(
-                "Embedding generation failed."
+                "Query embedding generation failed."
             ) from ex
 
     def generate_embeddings(

@@ -30,3 +30,19 @@ class EmbeddingService:
         )
 
         return self.provider.generate_embeddings(chunks)
+    
+    def generate_query_embedding(
+        self,
+        question: str,
+    ) -> Embedding:
+        """
+        Generate embedding for a user question.
+        """
+
+        logger.info(
+            "Generating query embedding."
+        )
+
+        return self.provider.generate_query_embedding(
+            question
+        )

@@ -11,12 +11,12 @@ class ChatConfig:
     Configuration used for chat completion requests.
     """
 
-    TEMPERATURE: float = 0.2
+    temperature: float = 0.2
 
-    MAX_TOKENS: int = 1000
+    max_tokens: int = 1000
 
-    TOP_P: float = 0.95
+    top_p: float = 0.95
 
-    FREQUENCY_PENALTY: float = 0.0
+    frequency_penalty: float = 0.0
 
-    PRESENCE_PENALTY: float = 0.0
+    presence_penalty: float = 0.0

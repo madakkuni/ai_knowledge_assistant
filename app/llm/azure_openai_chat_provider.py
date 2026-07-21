@@ -17,15 +17,28 @@ class AzureOpenAIChatProvider(BaseChatProvider):
     Azure OpenAI implementation of the chat provider.
     """
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        config: ChatConfig,
+    ) -> None:
         """
         Initialize the Azure OpenAI client.
+
+        Args:
+            config:
+                Chat configuration.
         """
+
+        self._config = config
 
         self._client = AzureOpenAI(
             api_key=settings.azure_openai_api_key,
             azure_endpoint=settings.azure_openai_endpoint,
             api_version=settings.azure_openai_api_version,
+        )
+
+        logger.info(
+            "Azure OpenAI Chat Provider initialized."
         )
 
     def generate_response(
@@ -53,11 +66,11 @@ class AzureOpenAIChatProvider(BaseChatProvider):
                     "content": prompt,
                 }
             ],
-            temperature=ChatConfig.TEMPERATURE,
-            max_tokens=ChatConfig.MAX_TOKENS,
-            top_p=ChatConfig.TOP_P,
-            frequency_penalty=ChatConfig.FREQUENCY_PENALTY,
-            presence_penalty=ChatConfig.PRESENCE_PENALTY,
+            temperature=self._config.temperature,
+            max_tokens=self._config.max_tokens,
+            top_p=self._config.top_p,
+            frequency_penalty=self._config.frequency_penalty,
+            presence_penalty=self._config.presence_penalty,
         )
 
         answer = response.choices[0].message.content

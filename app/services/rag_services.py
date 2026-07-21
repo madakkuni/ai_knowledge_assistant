@@ -11,9 +11,10 @@ from app.services.chat_service import ChatCompletionService
 from app.services.prompt_builder_service import PromptBuilderService
 from app.services.retrieval_service import RetrievalService
 from app.exceptions.rag_exceptions import RAGException
+from app.services.embedding_services import EmbeddingService
 
 logger = logging.getLogger(__name__)
-
+    
 
 class RAGService:
     """
@@ -25,6 +26,7 @@ class RAGService:
         self._retrieval_service = RetrievalService()
         self._prompt_builder_service = PromptBuilderService()
         self._chat_service = ChatCompletionService()
+        self._embedding_service = EmbeddingService()
 
         logger.info(
             "RAG Service initialized successfully."
@@ -37,21 +39,28 @@ class RAGService:
         """
         Retrieve relevant context and build
         the final prompt for the LLM.
-
-        Args:
-            question:
-                User question.
-
-        Returns:
-            Final prompt string.
         """
 
         logger.info(
             "Building prompt for user question."
         )
 
-        chunks: list[Chunk] = (
-            self._retrieval_service.retrieve(question)
+        # Generate embedding for the user question
+        query_embedding = (
+            self._embedding_service.generate_query_embedding(
+                question
+            )
+        )
+
+        # Retrieve relevant chunks
+        query_embedding = (
+            self._embedding_service.generate_query_embedding(
+                question
+            )
+        )
+
+        chunks = self._retrieval_service.retrieve(
+            query_embedding=query_embedding
         )
 
         logger.info(
@@ -59,11 +68,13 @@ class RAGService:
             len(chunks),
         )
 
-        prompt = (
-            self._prompt_builder_service.build_prompt(
-                question=question,
-                chunks=chunks,
-            )
+        for i, chunk in enumerate(chunks, start=1):
+            logger.info("=" * 80)
+            logger.info(f"Chunk {i}")
+            logger.info(chunk.content)
+        prompt = self._prompt_builder_service.build_prompt(
+            question=question,
+            chunks=chunks,
         )
 
         logger.info(

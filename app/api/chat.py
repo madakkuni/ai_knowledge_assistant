@@ -8,8 +8,10 @@ from fastapi import APIRouter
 
 from app.models.chat_request import ChatRequest
 from app.models.chat_response import ChatResponse
+from app.services.rag_services import RAGService
 
 logger = logging.getLogger(__name__)
+rag_service = RAGService()
 
 router = APIRouter(
     prefix="/chat",
@@ -44,6 +46,10 @@ async def chat(
         request.question,
     )
 
+    answer = rag_service.generate_answer(
+        request.question
+    )
+
     return ChatResponse(
-        answer="This is a dummy response."
+        answer = answer
     )

@@ -19,8 +19,8 @@ class ChunkingService:
         logger.info("Starting chunking process")
 
         config = TextSplitterConfig(
-            chunk_size=500,
-            chunk_overlap=100
+            chunk_size=1025,
+            chunk_overlap=200
         )
 
         splitter = SplitterFactory.get_splitter(

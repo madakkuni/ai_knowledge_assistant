@@ -5,6 +5,7 @@ from app.models.embedding import Embedding
 from app.retrieval.base_retriever import BaseRetriever
 from app.retrieval.retrieval_config import RetrievalConfig
 from app.services.vector_store_service import VectorStoreService
+from app.models.chunk import Chunk
 
 logger = logging.getLogger(__name__)
 
@@ -44,12 +45,26 @@ class VectorRetriever(BaseRetriever):
                 top_k=top_k,
             )
 
+            documents = results.get("documents", [[]])[0]
+            metadatas = results.get("metadatas", [[]])[0]
+
+            chunks = [
+                Chunk(
+                    content=document,
+                    metadata=metadata,
+                )
+                for document, metadata in zip(
+                    documents,
+                    metadatas,
+                )
+            ]
+
             logger.info(
                 "Retrieved %d matching chunks.",
-                len(results.get("ids", [[]])[0])
+                len(chunks)
             )
 
-            return results
+            return chunks
 
         except Exception as ex:
 
