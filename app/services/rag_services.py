@@ -69,3 +69,38 @@ class RAGService:
         )
 
         return prompt
+    def generate_answer(
+        self,
+        question: str,
+    ) -> str:
+        """
+        Generate an answer for the user's question
+        using the complete RAG pipeline.
+
+        Args:
+            question:
+                User question.
+
+        Returns:
+            Generated answer from the LLM.
+        """
+
+        logger.info(
+            "Generating answer using RAG pipeline."
+        )
+
+        prompt = self.build_prompt(question)
+
+        logger.info(
+            "Sending prompt to Chat Completion Service."
+        )
+
+        response = self._chat_service.generate_response(
+            prompt
+        )
+
+        logger.info(
+            "Successfully generated answer."
+        )
+
+        return response
