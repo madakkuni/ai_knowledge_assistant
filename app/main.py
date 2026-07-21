@@ -6,6 +6,7 @@ from app.core.config import settings
 from app.core.logging import setup_logging
 from app.exceptions.handlers import register_exception_handlers
 from app.api.documents import router as document_router
+from app.api.chat import router as chat_router
 
 logger = setup_logging()
 
@@ -26,3 +27,4 @@ register_exception_handlers(app)
 app.include_router(root_router)
 app.include_router(health_router)
 app.include_router(document_router)
+app.include_router(chat_router)
