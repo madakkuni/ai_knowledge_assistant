@@ -4,11 +4,13 @@ the Retrieval-Augmented Generation (RAG) pipeline.
 """
 
 import logging
+import time
 
 from app.models.chunk import Chunk
 from app.services.chat_service import ChatCompletionService
 from app.services.prompt_builder_service import PromptBuilderService
 from app.services.retrieval_service import RetrievalService
+from app.exceptions.rag_exceptions import RAGException
 
 logger = logging.getLogger(__name__)
 
