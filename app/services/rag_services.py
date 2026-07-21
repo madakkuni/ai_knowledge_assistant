@@ -28,27 +28,28 @@ class RAGService:
             "RAG Service initialized successfully."
         )
 
-    def retrieve_context(
+    def build_prompt(
         self,
         question: str,
-    ) -> list[Chunk]:
+    ) -> str:
         """
-        Retrieve relevant document chunks.
+        Retrieve relevant context and build
+        the final prompt for the LLM.
 
         Args:
             question:
                 User question.
 
         Returns:
-            List of retrieved chunks.
+            Final prompt string.
         """
 
         logger.info(
-            "Retrieving context for user question."
+            "Building prompt for user question."
         )
 
-        chunks = self._retrieval_service.retrieve(
-            question
+        chunks: list[Chunk] = (
+            self._retrieval_service.retrieve(question)
         )
 
         logger.info(
@@ -56,4 +57,15 @@ class RAGService:
             len(chunks),
         )
 
-        return chunks
+        prompt = (
+            self._prompt_builder_service.build_prompt(
+                question=question,
+                chunks=chunks,
+            )
+        )
+
+        logger.info(
+            "Prompt built successfully."
+        )
+
+        return prompt
