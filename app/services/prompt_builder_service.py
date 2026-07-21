@@ -5,11 +5,11 @@ Service responsible for prompt generation.
 import time
 from typing import List
 
-from app.core.logging import logger
+import logging
 from app.models.chunk import Chunk
 from app.prompting.prompt_builder_factory import PromptBuilderFactory
 from app.exceptions.bad_request_exception import BadRequestException
-
+logger = logging.getLogger(__name__)
 
 class PromptBuilderService:
     """
